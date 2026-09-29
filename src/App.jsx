@@ -630,6 +630,7 @@ export default function App() {
                     <main className="game-main-content">
                         {view === 'host' ? (
                             <HostDashboard
+                                roomCode={roomCode}
                                 round={round}
                                 participants={participants}
                                 notes={notes}
@@ -641,6 +642,7 @@ export default function App() {
                                 onToggleRevealAuthors={handleToggleRevealAuthors}
                                 onRestartGame={handleRestartGame}
                                 onAddDemoParticipants={handleAddDemoParticipants}
+                                addToast={addToast}
                             />
                         ) : (
                             <ParticipantView

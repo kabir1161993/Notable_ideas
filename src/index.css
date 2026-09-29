@@ -783,8 +783,9 @@ body::after {
 .sticky-note-card {
   position: relative;
   width: 100%;
-  max-width: 320px;
-  min-height: 290px;
+  max-width: 340px;
+  min-height: 300px;
+  max-height: 520px;
   border-radius: 4px;
   padding: 1.75rem 1.4rem 1.4rem;
   box-shadow: var(--note-shadow);
@@ -941,6 +942,8 @@ body::after {
   color: inherit;
   outline: none;
   resize: vertical;
+  min-height: 170px;
+  max-height: 350px;
 }
 
 .note-content-input:focus {
@@ -1011,6 +1014,19 @@ body::after {
   font-size: 1.25rem;
   line-height: 1.35;
   flex-grow: 1;
+  overflow-y: auto;
+  max-height: 280px;
+  padding-right: 6px;
+  word-break: break-word;
+}
+
+.note-display-content::-webkit-scrollbar {
+  width: 5px;
+}
+
+.note-display-content::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
 }
 
 .note-line {
@@ -1567,8 +1583,8 @@ body::after {
 }
 
 .editor-card-wrapper .sticky-note-card {
-  max-width: 440px;
-  min-height: 380px;
+  max-width: 500px;
+  min-height: 440px;
   padding: 2rem 1.75rem;
   transform: rotate(0deg) !important;
 }
@@ -1781,6 +1797,98 @@ body::after {
   flex-grow: 1;
   text-align: left;
 }
+
+/* ==========================================================================
+   Export Modal Styles
+   ========================================================================== */
+
+.export-modal-card {
+  max-width: 620px;
+  text-align: left;
+}
+
+.export-modal-card .modal-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.export-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.export-item-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: var(--radius-md);
+  padding: 1.1rem 1.25rem;
+  gap: 1rem;
+  transition: all 0.2s ease;
+}
+
+.export-item-card:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.export-item-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-grow: 1;
+}
+
+.export-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.md-icon-box { background: rgba(139, 92, 246, 0.18); color: #c4b5fd; }
+.csv-icon-box { background: rgba(16, 185, 129, 0.18); color: #6ee7b7; }
+.json-icon-box { background: rgba(56, 189, 248, 0.18); color: #7dd3fc; }
+
+.export-text h4 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.export-text p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.35;
+}
+
+.export-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .export-item-card {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.85rem;
+  }
+
+  .export-actions {
+    justify-content: flex-end;
+  }
+}
+
 
 /* ==========================================================================
    Toast Notifications
