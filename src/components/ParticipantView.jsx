@@ -89,10 +89,10 @@ export default function ParticipantView({
                                     <strong>One sticky note rule:</strong> You have exactly one note. Make every word count!
                                 </li>
                                 <li>
-                                    <strong>Title:</strong> Keep it short, memorable, and clear (max 60 chars).
+                                    <strong>Title:</strong> Keep it short, memorable, and punchy (up to 120 chars).
                                 </li>
                                 <li>
-                                    <strong>Points & Details:</strong> Add 2–3 concise points or benefits.
+                                    <strong>Points & Details:</strong> Add up to 2,000 characters with your key insights, details, and rationale.
                                 </li>
                                 <li>
                                     <strong>Anonymity:</strong> Your name will be hidden from everyone else during voting!

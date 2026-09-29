@@ -127,23 +127,23 @@ export default function StickyNote({
                             className="note-title-input"
                             placeholder="Give your idea a punchy title..."
                             value={note.title || ''}
-                            maxLength={60}
+                            maxLength={120}
                             onChange={(e) => onChange && onChange({ ...note, title: e.target.value })}
                         />
-                        <span className="char-count">{(note.title || '').length}/60</span>
+                        <span className="char-count">{(note.title || '').length}/120</span>
                     </div>
 
                     <div className="input-field-group">
-                        <label className="note-field-label">Points & Details</label>
+                        <label className="note-field-label">Points & Details (Up to 2,000 characters)</label>
                         <textarea
                             className="note-content-input"
-                            placeholder="• Detail 1: Why this is great&#10;• Detail 2: How it works&#10;• Detail 3: Impact / Benefits"
-                            rows={5}
-                            maxLength={350}
+                            placeholder="• Detail 1: Why this is great&#10;• Detail 2: How it works&#10;• Detail 3: Impact / Benefits&#10;• Write as much detail as you need..."
+                            rows={7}
+                            maxLength={2000}
                             value={note.content || ''}
                             onChange={(e) => onChange && onChange({ ...note, content: e.target.value })}
                         />
-                        <span className="char-count">{(note.content || '').length}/350</span>
+                        <span className="char-count">{(note.content || '').length}/2000</span>
                     </div>
 
                     {/* Color Swatches */}

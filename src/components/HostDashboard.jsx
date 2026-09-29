@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import StickyNote from './StickyNote';
+import ExportModal from './ExportModal';
 import { 
     Users, 
     FileText, 
@@ -13,10 +14,12 @@ import {
     Trophy, 
     CheckCircle2, 
     Clock, 
-    Info 
+    Info,
+    Download
 } from 'lucide-react';
 
 export default function HostDashboard({
+    roomCode = '',
     round,
     participants,
     notes,
@@ -28,8 +31,10 @@ export default function HostDashboard({
     onToggleRevealAuthors,
     onRestartGame,
     onAddDemoParticipants,
+    addToast,
 }) {
     const [previewParticipantView, setPreviewParticipantView] = useState(false);
+    const [showExportModal, setShowExportModal] = useState(false);
 
     // Compute live stats
     const totalParticipants = participants.filter(p => !p.isHost).length;
@@ -135,6 +140,15 @@ export default function HostDashboard({
                         <div className="btn-group">
                             <button 
                                 className="btn btn-outline"
+                                onClick={() => setShowExportModal(true)}
+                                title="Export current voting board"
+                            >
+                                <Download size={16} />
+                                Export
+                            </button>
+
+                            <button 
+                                className="btn btn-outline"
                                 onClick={() => setPreviewParticipantView(!previewParticipantView)}
                                 title="Toggle what participants see (anonymous, hidden scores)"
                             >
@@ -154,6 +168,15 @@ export default function HostDashboard({
 
                     {round === 'RESULTS' && (
                         <div className="btn-group">
+                            <button 
+                                className="btn btn-secondary btn-lg"
+                                onClick={() => setShowExportModal(true)}
+                                title="Export full board to Markdown, CSV, or JSON"
+                            >
+                                <Download size={18} />
+                                Export Board
+                            </button>
+
                             <button 
                                 className={`btn ${revealAuthors ? 'btn-secondary' : 'btn-outline'}`}
                                 onClick={onToggleRevealAuthors}
@@ -336,6 +359,17 @@ export default function HostDashboard({
                         })}
                     </div>
                 </div>
+            )}
+
+            {/* Export Board Modal */}
+            {showExportModal && (
+                <ExportModal
+                    roomCode={roomCode}
+                    sortedNotes={sortedNotes}
+                    revealAuthors={revealAuthors}
+                    onClose={() => setShowExportModal(false)}
+                    addToast={addToast}
+                />
             )}
         </div>
     );
